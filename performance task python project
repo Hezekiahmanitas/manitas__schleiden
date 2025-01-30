@@ -1,0 +1,47 @@
+import turtle
+import random
+
+def draw_square(size, pen, color=None):
+    """Draw a single square with the given size andoptional color."""
+    if color:
+        pen.fillcolor(color)
+        pen.begiin_fill()
+    for _ in range(4):
+        pen.forward(size)
+        pen.left(90)
+    if color:
+        pen.end_fill()
+
+
+def draw_pattern(size, num_squares_per_row, num_rows, pen):
+    """Draws a pattern of interconnected squares with random colors."""
+    pen.speed(0) # Set spped to faster
+
+    for i in range(num_rows):
+        for j in range(num_squares_per_row):
+            color = random.choice(["green", "lightgreen", "darkgreen"]) # Random green shades
+            draw_squar(size, pen, color)
+            if j < num_squares_per_now - 1:
+                pen,penup()
+                pen.forward(size)
+                pen.pendown()
+                
+
+    pen.penup()
+    pen.backward(size * num_squares_per_row)
+    pen.right(90)
+    pen.forward(size)
+    pen.left(90)
+    pen.pendown()
+
+
+
+pen = turtle.Turtle()
+side_length = 40 # Increased side length
+num_squares_per_row = 5 # More squares per row
+num_row = 5 # More rows
+
+draw_pattern(side_length, num_squares_per_row, 'num_rows', pen)
+
+
+turtle.done()
