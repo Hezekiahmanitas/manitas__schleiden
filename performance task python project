@@ -20,9 +20,9 @@ def draw_pattern(size, num_squares_per_row, num_rows, pen):
     for i in range(num_rows):
         for j in range(num_squares_per_row):
             color = random.choice(["green", "lightgreen", "darkgreen"]) # Random green shades
-            draw_squar(size, pen, color)
-            if j < num_squares_per_now - 1:
-                pen,penup()
+            draw_square(size, pen, color)
+            if j < num_squares_per_row - 1:
+                pen.penup()
                 pen.forward(size)
                 pen.pendown()
                 
