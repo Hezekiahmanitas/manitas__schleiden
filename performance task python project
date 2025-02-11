@@ -1,47 +1,24 @@
-import turtle
-import random
+import turtle as tur
+import colorsys as cs
 
-def draw_square(size, pen, color=None):
-    """Draw a single square with the given size andoptional color."""
-    if color:
-        pen.fillcolor(color)
-        pen.begiin_fill()
-    for _ in range(4):
-        pen.forward(size)
-        pen.left(90)
-    if color:
-        pen.end_fill()
+# Set up the turtle environment
+tur.speedup(800,800) # Set the window size
+tur.speed(0)         # Set maximum speed
+tur.tracer(10)       # Optimize drawing speed
+tur.width(2)         # Set pen width
+tur.bgcolor("black") # Set background color to black
 
+# loop to create colorful patters
+for j in rang(25):
+    for i in range(15):
+        tur.color(cs.hsv_to_rgb(i/15,j/25,1)) # Generate colors dynamically
+        tur.right(90)
+        tur.circle(200-j*4,90) # Draw quarter-circle arcs
+        tur.left(90)
+        tur.circle(200-j*4,90) # Mirror the arcs
+        tur.right(180)
+        tur.circle(50,24) # Drawsmaller decorative circle
 
-def draw_pattern(size, num_squares_per_row, num_rows, pen):
-    """Draws a pattern of interconnected squares with random colors."""
-    pen.speed(0) # Set spped to faster
-
-    for i in range(num_rows):
-        for j in range(num_squares_per_row):
-            color = random.choice(["green", "lightgreen", "darkgreen"]) # Random green shades
-            draw_square(size, pen, color)
-            if j < num_squares_per_row - 1:
-                pen.penup()
-                pen.forward(size)
-                pen.pendown()
-                
-
-    pen.penup()
-    pen.backward(size * num_squares_per_row)
-    pen.right(90)
-    pen.forward(size)
-    pen.left(90)
-    pen.pendown()
-
-
-
-pen = turtle.Turtle()
-side_length = 40 # Increased side length
-num_squares_per_row = 5 # More squares per row
-num_row = 5 # More rows
-
-draw_pattern(side_length, num_squares_per_row, 'num_rows', pen)
-
-
-turtle.done()
+# Hide the turtle and complete the drawing
+tur.hideturtle()
+tur.done
