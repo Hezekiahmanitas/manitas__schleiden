@@ -1,0 +1,54 @@
+import turtle
+import random
+
+def draw_grid():
+    turtle.speed(0)
+    turtle.pensize(3)
+    for i in range(4):
+        turtle.penup()
+        turtle.goto(-150, 150 - 100 * i)
+        turtle.pendown()
+        turtle.forward(300)
+    
+    turtle.right(90)
+    for i in range(4):
+        turtle.penup()
+        turtle.goto(-150 + 100 * i, 150)
+        turtle.pendown()
+        turtle.forward(300)
+    
+    turtle.pensize(1)
+    for i in range(10):
+        if i % 3 != 0:
+            turtle.penup()
+            turtle.goto(-150, 150 - 50 * i)
+            turtle.pendown()
+            turtle.forward(300)
+    
+    turtle.right(90)
+    for i in range(10):
+        if i % 3 != 0:
+            turtle.penup()
+            turtle.goto(-150 + 50 * i, 150)
+            turtle.pendown()
+            turtle.forward(300)
+
+def write_number(x, y):
+    turtle.penup()
+    col = int((x + 150) // 50)
+    row = int((150 - y) // 50)
+    
+    if 0 <= col < 9 and 0 <= row < 9:
+        turtle.goto(-125 + col * 50, 125 - row * 50)
+        turtle.write(random.randint(1, 9), align="center", font=("Arial", 18, "normal"))
+
+def setup():
+    turtle.setup(400, 400)
+    turtle.hideturtle()
+    turtle.tracer(0, 0)
+    draw_grid()
+    turtle.tracer(1, 0)
+    turtle.onscreenclick(write_number)
+    turtle.done()
+
+setup()
